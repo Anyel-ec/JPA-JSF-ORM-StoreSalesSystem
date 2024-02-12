@@ -1,0 +1,36 @@
+/* Estilos para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+th, td {
+    padding: 12px;
+    border: none;
+    border-bottom: 1px solid #dddddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+td {
+    background-color: #ffffff;
+}
+
+/* Estilo para filas impares */
+tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Estilo para el hover */
+tr:hover {
+    background-color: #e9ecef;
+    transition: background-color 0.3s ease;
+}
