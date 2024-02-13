@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Agregar Nuevo Cliente</title>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css" />
+</head>
+<body>
+<h:form class="container">
+    <h2 class="mb-4">Agregar Nuevo Cliente</h2>
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre Cliente:</label>
+        <h:inputText id="nombre" value="#{clienteManagerBean.cliente.nombre}" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="apellido" class="form-label">Apellido Cliente:</label>
+        <h:inputText id="apellido" value="#{clienteManagerBean.cliente.apellido}" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="cedula" class="form-label">Cedula:</label>
+        <h:inputText id="cedula" value="#{clienteManagerBean.cliente.cedula}" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="direccion" class="form-label">Direccion:</label>
+        <h:inputText id="direccion" value="#{clienteManagerBean.cliente.direccion}" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label for="telefono" class="form-label">Telefono:</label>
+        <h:inputText id="telefono" value="#{clienteManagerBean.cliente.telefono}" class="form-control" />
+    </div>
+    <!-- Componente de mensajes -->
+    <h:messages globalOnly="true" layout="table" styleClass="alert alert-success" />
+
+    <!-- Botón para guardar el producto -->
+    <div class="mb-3">
+        <h:commandButton value="Guardar Cliente" action="#{clienteManagerBean.guardar(clienteManagerBean.cliente)}" class="btn btn-primary" />
+    </div>
+
+    <div>
+        <h:commandButton value="Regresar" action="#{navigationBean.irClientes()}" class="btn btn-secondary" />
+    </div>
+</h:form>
+
+</body>
+</html>
