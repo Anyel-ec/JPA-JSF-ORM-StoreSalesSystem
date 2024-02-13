@@ -53,19 +53,30 @@
                 <tr>
                     <th scope="col">Código Producto</th>
                     <th scope="col">Descripción</th>
-                    <th scope="col">Fecha de Caducidad</th>
+                    <!--<th scope="col">Fecha de Caducidad</th>-->
                     <th scope="col">Nombre</th>
                     <th scope="col">Precio</th>
+                    <th>Acciones</th>
+
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="#{productoManageBean.productos}" var="producto">
+                <c:forEach items="#{productoManageBean.obtenerProductos()}" var="producto">
                     <tr>
                         <td>#{producto.codigo_producto}</td>
                         <td>#{producto.descripcion}</td>
-                        <td>#{producto.fecha_caducidad}</td>
+                        <!--<td>#{producto.fecha_caducidad}</td>-->
                         <td>#{producto.nombre}</td>
                         <td>#{producto.precio}</td>
+                        <td>
+                            <h:form>
+                                <h:commandButton value="Editar" action="#{productoManageBean.editar(producto.id_producto)}" styleClass="btn btn-warning" />
+                            </h:form>
+
+                            <h:form styleClass="d-inline">
+                                <h:commandButton value="Eliminar" action="#{productoManageBean.eliminar(producto.id_producto)}" styleClass="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este producto?');" />
+                            </h:form>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>

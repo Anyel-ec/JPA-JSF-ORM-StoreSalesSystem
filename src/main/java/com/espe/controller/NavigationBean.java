@@ -14,7 +14,7 @@ public class NavigationBean {
     }
     public String irProductos() {
         // Lógica para determinar a qué página redirigir
-        return "/producto/index.xhtml";
+        return "/index.xhtml";
     }
     public String nuevoProducto() {
         // Lógica para determinar a qué página redirigir

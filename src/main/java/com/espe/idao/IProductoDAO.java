@@ -9,5 +9,7 @@ public interface IProductoDAO {
     void actualizar(Producto producto);
     Producto buscarPorId(int id);
     List<Producto> obtenerProductos();
-    void eliminar(int id);
+   void eliminar(int id);
+   void actualizarEstado(int id, boolean eliminado);
+
 }

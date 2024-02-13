@@ -5,54 +5,64 @@ import com.espe.idao.IProductoDAO;
 import com.espe.model.Producto;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 
 import java.util.List;
+import java.util.Map;
 
 @Named
 @RequestScoped
 public class ProductoManageBean {
-    private IProductoDAO productoDAO;
-    private Producto producto;
-    private List<Producto> productos;
+    private Producto producto = new Producto();
 
-    @PostConstruct
-    public void init() {
-        productoDAO = new ProductoDAOImpl();
-        producto = new Producto();
-        cargarProductos();
-    }
 
-    public void guardarProducto() {
+    // Crear un objeto de tipo IUsuarioDAO
+    IProductoDAO productoDAO = new ProductoDAOImpl();
+
+    // Método para guardar un producto
+    public String guardar(Producto producto) {
         productoDAO.guardar(producto);
-        limpiarFormulario();
-        cargarProductos();
+        // Limpiar el formulario
+        this.producto = new Producto();
+        // Mostrar un mensaje de éxito
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Producto agregado correctamente", "Producto agregado correctamente"));
+        return "/producto/listar.xhtml?faces-redirect=true";
     }
 
-    public void actualizarProducto() {
+
+    // Método para actualizar un producto
+    public String actualizar(Producto producto) {
         productoDAO.actualizar(producto);
-        limpiarFormulario();
-        cargarProductos();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Producto actualizado correctamente"));
+        return "/index.xhtml?faces-redirect=true";
     }
 
-    public void eliminarProducto(int id) {
+
+    // Método para eliminar un producto
+    public void eliminar(int id) {
         productoDAO.eliminar(id);
-        cargarProductos();
     }
 
-    public void cargarProductos() {
-        productos = productoDAO.obtenerProductos();
+    // Método para obtener todos los productos
+    public List<Producto> obtenerProductos() {
+        return productoDAO.obtenerProductos();
     }
 
-    public void seleccionarProducto(Producto producto) {
-        this.producto = producto;
+    // Método para editar un producto
+    public String editar(int id) {
+        Producto producto = productoDAO.buscarPorId(id);
+        if (producto != null) {
+            // Almacenar el producto en el ámbito de sesión
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("productoEditado", producto);
+            return "/producto/editar.xhtml?faces-redirect=true";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "No se encontró el producto"));
+            return null;
+        }
     }
-
-    public void limpiarFormulario() {
-        producto = new Producto();
-    }
-
-    // Getters and setters
     public Producto getProducto() {
         return producto;
     }
@@ -61,11 +71,4 @@ public class ProductoManageBean {
         this.producto = producto;
     }
 
-    public List<Producto> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<Producto> productos) {
-        this.productos = productos;
-    }
 }

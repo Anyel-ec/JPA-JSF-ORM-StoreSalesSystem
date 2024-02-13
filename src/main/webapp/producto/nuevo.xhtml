@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
    <title>Agregar Nuevo Producto</title>
    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css" />
-   <!-- Agrega cualquier otro enlace a archivos CSS o scripts que necesites -->
 </head>
 <body>
-<h:form>
-   <h2>Agregar Nuevo Producto</h2>
-   <div>
-      <label for="codigo">Código Producto:</label>
-      <h:inputText id="codigo" value="#{productoManageBean.producto.codigo_producto}" />
+<h:form class="container">
+   <h2 class="mb-4">Agregar Nuevo Producto</h2>
+   <div class="mb-3">
+      <label for="codigo" class="form-label">Código Producto:</label>
+      <h:inputText id="codigo" value="#{productoManageBean.producto.codigo_producto}" class="form-control" />
    </div>
-   <div>
-      <label for="descripcion">Descripción:</label>
-      <h:inputText id="descripcion" value="#{productoManageBean.producto.descripcion}" />
+   <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción:</label>
+      <h:inputText id="descripcion" value="#{productoManageBean.producto.descripcion}" class="form-control" />
    </div>
-   <div>
-      <label for="fechaCaducidad">Fecha de Caducidad:</label>
-      <input id="fechaCaducidad" class="custom-date-input" type="date" value="#{productoManageBean.producto.fecha_caducidad}" />
-      <h:message for="fechaCaducidad" />
+   <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre:</label>
+      <h:inputText id="nombre" value="#{productoManageBean.producto.nombre}" class="form-control" />
    </div>
-   <div>
-      <label for="nombre">Nombre:</label>
-      <h:inputText id="nombre" value="#{productoManageBean.producto.nombre}" />
+   <div class="mb-3">
+      <label for="precio" class="form-label">Precio:</label>
+      <h:inputText id="precio" value="#{productoManageBean.producto.precio}" class="form-control" />
    </div>
-   <div>
-      <label for="precio">Precio:</label>
-      <h:inputText id="precio" value="#{productoManageBean.producto.precio}" />
+   <!-- Componente de mensajes -->
+   <h:messages globalOnly="true" layout="table" styleClass="alert alert-success" />
+
+   <!-- Botón para guardar el producto -->
+   <div class="mb-3">
+      <h:commandButton value="Guardar Producto" action="#{productoManageBean.guardar(productoManageBean.producto)}" class="btn btn-primary" />
    </div>
+
    <div>
-      <h:commandButton value="Guardar Producto" action="#{productoManageBean.guardarProducto()}" />
+      <h:commandButton value="Cancelar" action="#{navigationBean.irProductos()}" class="btn btn-secondary" />
    </div>
 </h:form>
+
 </body>
 </html>
