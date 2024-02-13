@@ -19,7 +19,6 @@ public class Empleado {
     private String telefono;
     @Column
     private String cedula;
-
     @Column
     private boolean eliminado = Boolean.FALSE;
 

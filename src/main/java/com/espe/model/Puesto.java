@@ -43,9 +43,6 @@ public class Puesto {
 
     @Override
     public String toString() {
-        return "Puesto{" +
-                "id_puesto=" + id_puesto +
-                ", nombre='" + nombre + '\'' +
-                '}';
+        return nombre;
     }
 }

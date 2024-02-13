@@ -29,6 +29,12 @@ public class NavigationBean {
         // Lógica para determinar a qué página redirigir
         return "/empleado/index.xhtml";
     }
+
+    public String nuevoEmpleado() {
+        // Lógica para determinar a qué página redirigir
+        return "/empleado/nuevo.xhtml";
+    }
+
     public String irPedidos() {
         // Lógica para determinar a qué página redirigir
         return "/pedido/index.xhtml";

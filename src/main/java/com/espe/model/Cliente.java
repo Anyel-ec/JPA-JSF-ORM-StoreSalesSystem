@@ -19,16 +19,20 @@ public class Cliente {
     @Column
     private String direccion;
 
+    @Column
+    private boolean eliminado = Boolean.FALSE;
+
     public Cliente() {
     }
 
-    public Cliente(long id_cliente, String nombre, String apellido, String telefono, String cedula, String direccion) {
+    public Cliente(long id_cliente, String nombre, String apellido, String telefono, String cedula, String direccion, boolean eliminado) {
         this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.apellido = apellido;
         this.telefono = telefono;
         this.cedula = cedula;
         this.direccion = direccion;
+        this.eliminado = eliminado;
     }
 
     public long getId_cliente() {
@@ -79,6 +83,15 @@ public class Cliente {
         this.direccion = direccion;
     }
 
+    public boolean isEliminado() {
+        return eliminado;
+    }
+
+    public void setEliminado(boolean eliminado) {
+        this.eliminado = eliminado;
+    }
+
+
     @Override
     public String toString() {
         return "Cliente{" +
@@ -88,6 +101,7 @@ public class Cliente {
                 ", telefono='" + telefono + '\'' +
                 ", cedula='" + cedula + '\'' +
                 ", direccion='" + direccion + '\'' +
+                ", eliminado=" + eliminado +
                 '}';
     }
 }

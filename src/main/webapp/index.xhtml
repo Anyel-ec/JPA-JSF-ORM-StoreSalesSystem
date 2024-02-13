@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarExample01">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
-                        <h:commandButton styleClass="btn btn-outline-light text-primary" value="Productos" action="#{navigationBean.irProductos()}" />
+                        <h:commandButton styleClass="btn btn-outline-light text-dark" value="Productos" action="#{navigationBean.irProductos()}" />
                     </li>
                     <li class="nav-item">
                         <h:commandButton styleClass="btn btn-outline-light text-primary" value="Clientes" action="#{navigationBean.irClientes()}" />
@@ -43,8 +43,11 @@
         </div>
     </div>
 
-    <div class="container mt-5">
-        <h1 class="mt-5"> Productos </h1>
+    <div class="container">
+
+        <br/>
+        <br/>
+        <br/>
         <h:commandButton styleClass="btn btn-primary mt-5" value="Nuevo Producto" action="#{navigationBean.nuevoProducto()}" />
         <h2> Lista de los Productos</h2>
         <div class="table-responsive">
@@ -53,12 +56,10 @@
                 <tr>
                     <th scope="col">Código Producto</th>
                     <th scope="col">Descripción</th>
-                    <!--<th scope="col">Fecha de Caducidad</th>-->
                     <th scope="col">Nombre</th>
-                    <th scope="col">Eliminado</th>
+                    <!--<th scope="col">Eliminado</th>-->
                     <th scope="col">Precio</th>
                     <th>Acciones</th>
-
                 </tr>
                 </thead>
                 <tbody>
@@ -66,9 +67,8 @@
                     <tr>
                         <td>#{producto.codigo_producto}</td>
                         <td>#{producto.descripcion}</td>
-                        <!--<td>#{producto.fecha_caducidad}</td>-->
                         <td>#{producto.nombre}</td>
-                        <td>#{producto.eliminado}</td>
+                        <!--<td>#{producto.eliminado}</td>-->
                         <td>#{producto.precio}</td>
                         <td>
                             <h:form>

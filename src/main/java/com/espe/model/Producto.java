@@ -14,8 +14,7 @@ public class Producto {
     private int codigo_producto;
     @Column
     private String nombre;
-    @Column
-    private LocalDate fecha_caducidad;
+
     @Column
     private String descripcion;
     @Column
@@ -27,11 +26,10 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(long id_producto, int codigo_producto, String nombre, LocalDate fecha_caducidad, String descripcion, double precio, boolean eliminado) {
+    public Producto(long id_producto, int codigo_producto, String nombre, String descripcion, double precio, boolean eliminado) {
         this.id_producto = id_producto;
         this.codigo_producto = codigo_producto;
         this.nombre = nombre;
-        this.fecha_caducidad = fecha_caducidad;
         this.descripcion = descripcion;
         this.precio = precio;
         this.eliminado = eliminado;
@@ -61,13 +59,6 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public LocalDate getFecha_caducidad() {
-        return fecha_caducidad;
-    }
-
-    public void setFecha_caducidad(LocalDate fecha_caducidad) {
-        this.fecha_caducidad = fecha_caducidad;
-    }
 
     public String getDescripcion() {
         return descripcion;
@@ -99,7 +90,6 @@ public class Producto {
                 "id_producto=" + id_producto +
                 ", codigo_producto=" + codigo_producto +
                 ", nombre='" + nombre + '\'' +
-                ", fecha_caducidad=" + fecha_caducidad +
                 ", descripcion='" + descripcion + '\'' +
                 ", precio=" + precio +
                 ", eliminado=" + eliminado +
