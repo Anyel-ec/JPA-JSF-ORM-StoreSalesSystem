@@ -5,59 +5,144 @@
 <head>
     <title>Editar Cliente</title>
     <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #F0F0F2;
+        }
+        .navbar,
+        .container-footer {
+            background-color: #ffffff;
+        }
+    </style>
 </head>
 <body>
-<h:form class="container">
-    <h2 class="mb-4">Editar Cliente</h2>
-    <div class="row mb-3">
-        <div class="col-md-2">
-            <h:outputLabel for="nombre" value="nombre Cliente:" />
-        </div>
-        <div class="col-md-4">
-            <h:inputText id="nombre" value="#{sessionScope.clienteEditado.nombre}" class="form-control" />
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-2">
-            <h:outputLabel for="apellido" value="Apellido:" />
-        </div>
-        <div class="col-md-4">
-            <h:inputText id="apellido" value="#{sessionScope.clienteEditado.apellido}" class="form-control" />
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-2">
-            <h:outputLabel for="cedula" value="Cedula:" />
-        </div>
-        <div class="col-md-10">
-            <h:inputTextarea id="cedula" value="#{sessionScope.clienteEditado.cedula}" rows="6" cols="30" class="form-control" />
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-md-2">
-            <h:outputLabel for="direccion" value="Direccion:" />
-        </div>
-        <div class="col-md-4">
-            <h:inputText id="direccion" value="#{sessionScope.clienteEditado.direccion}" class="form-control" />
-        </div>
-    </div>
-    <div class="row mb-3">
-        <div class="col-md-2">
-            <h:outputLabel for="telefono" value="Telefono:" />
-        </div>
-        <div class="col-md-10">
-            <h:inputTextarea id="telefono" value="#{sessionScope.clienteEditado.telefono}" rows="6" cols="30" class="form-control" />
+<h:form class="">
+    <div class="navbar navbar-expand-lg ">
+        <div class="container">
+            <h:graphicImage url="https://mdbootstrap.com/img/Photos/new-templates/animal-shelter/logo.png" height="70" alt="" loading="lazy" />
+            <h:commandButton styleClass="navbar-toggler ps-0" type="button" actionListener="#{navigationBean.toggleNavbar}" value="Toggle navigation">
+                    <span class="navbar-toggler-icon d-flex justify-content-start align-items-center">
+                        <i class="fas fa-bars"></i>
+                    </span>
+            </h:commandButton>
+            <div class="collapse navbar-collapse" id="navbarExample01">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item active">
+                        <h:commandButton styleClass="btn btn-outline-light text-primary" value="Productos" action="#{navigationBean.irProductos()}" />
+                    </li>
+                    <li class="nav-item">
+                        <h:commandButton styleClass="btn btn-outline-light text-primary" value="Clientes" action="#{navigationBean.irClientes()}" />
+                    </li>
+                    <li class="nav-item">
+                        <h:commandButton styleClass="btn btn-outline-light text-primary" value="Empleados" action="#{navigationBean.irEmpleados()}" />
+                    </li>
+                    <li class="nav-item">
+                        <h:commandButton styleClass="btn btn-outline-light text-primary"  value="Detalles Pedido" action="#{navigationBean.irDetalles()}" />
+                    </li>
+                    <li class="nav-item">
+                        <h:commandButton styleClass="btn btn-outline-light text-primary"  value="Pedido" action="#{navigationBean.irPedidos()}" />
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <div class="row mb-3">
-        <div class="col-md-2"></div>
-        <div class="col-md-4">
-            <h:commandButton value="Guardar" action="#{clienteManagerBean.actualizar(sessionScope.clienteEditado)}" class="btn btn-primary" />
-            <h:commandButton value="Regresar" action="#{navigationBean.irClientes()}" class="btn btn-secondary" />
+    <div class="container mt-5">
+        <h2 class="mb-4">Editar Cliente</h2>
+        <div class="row mb-3">
+            <div class="col-md-2">
+                <h:outputLabel for="nombre" value="nombre Cliente:" />
+            </div>
+            <div class="col-md-4">
+                <h:inputText id="nombre" value="#{sessionScope.clienteEditado.nombre}" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2">
+                <h:outputLabel for="apellido" value="Apellido:" />
+            </div>
+            <div class="col-md-4">
+                <h:inputText id="apellido" value="#{sessionScope.clienteEditado.apellido}" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2">
+                <h:outputLabel for="cedula" value="Cedula:" />
+            </div>
+            <div class="col-md-4">
+                <h:inputText id="cedula" value="#{sessionScope.clienteEditado.cedula}"  class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2">
+                <h:outputLabel for="direccion" value="Direccion:" />
+            </div>
+            <div class="col-md-4">
+                <h:inputText id="direccion" value="#{sessionScope.clienteEditado.direccion}" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-2">
+                <h:outputLabel for="telefono" value="Telefono:" />
+            </div>
+            <div class="col-md-4">
+                <h:inputText id="telefono" value="#{sessionScope.clienteEditado.telefono}"  class="form-control" />
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-2"></div>
+            <div class="col-md-4">
+                <h:form>
+                    <h:commandButton value="Guardar" action="#{clienteManagerBean.actualizar(sessionScope.clienteEditado)}" class="btn btn-primary" />
+                </h:form>
+                <h:commandButton value="Regresar" action="#{navigationBean.irClientes()}" class="btn btn-secondary" />
+            </div>
+        </div>
+    </div>
+    <div class="container-footer container-fluid mt-5">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-3" style="letter-spacing: 2px; color: #333;">Sobre Nosotros</h5>
+                <p>
+                    Somos una tienda de víveres comprometida en proveer productos frescos y de alta calidad para satisfacer las necesidades de nuestros clientes.
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-3" style="letter-spacing: 2px; color: #333;">Enlaces Útiles</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-1">
+                        <a href="#!" style="color: #333;">Preguntas Frecuentes</a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#!" style="color: #333;">Envíos</a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#!" style="color: #333;">Precios</a>
+                    </li>
+                    <li>
+                        <a href="#!" style="color: #333;">Áreas de Entrega</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-1" style="letter-spacing: 2px; color: #333;">Horario de Atención</h5>
+                <table class="table" style="color: #333;">
+                    <tbody>
+                    <tr>
+                        <td>Lunes - Viernes:</td>
+                        <td>8am - 9pm</td>
+                    </tr>
+                    <tr>
+                        <td>Sábado - Domingo:</td>
+                        <td>8am - 1am</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </h:form>
