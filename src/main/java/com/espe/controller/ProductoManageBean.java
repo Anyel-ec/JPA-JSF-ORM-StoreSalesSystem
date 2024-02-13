@@ -41,10 +41,13 @@ public class ProductoManageBean {
     }
 
 
-    // Método para eliminar un producto
+    // Método para eliminar un producto (soft delete)
     public void eliminar(int id) {
-        productoDAO.eliminar(id);
+        productoDAO.actualizarEstado(id, Boolean.TRUE);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Producto eliminado correctamente"));
+
     }
+
 
     // Método para obtener todos los productos
     public List<Producto> obtenerProductos() {

@@ -55,6 +55,7 @@
                     <th scope="col">Descripción</th>
                     <!--<th scope="col">Fecha de Caducidad</th>-->
                     <th scope="col">Nombre</th>
+                    <th scope="col">Eliminado</th>
                     <th scope="col">Precio</th>
                     <th>Acciones</th>
 
@@ -67,15 +68,15 @@
                         <td>#{producto.descripcion}</td>
                         <!--<td>#{producto.fecha_caducidad}</td>-->
                         <td>#{producto.nombre}</td>
+                        <td>#{producto.eliminado}</td>
                         <td>#{producto.precio}</td>
                         <td>
                             <h:form>
                                 <h:commandButton value="Editar" action="#{productoManageBean.editar(producto.id_producto)}" styleClass="btn btn-warning" />
                             </h:form>
 
-                            <h:form styleClass="d-inline">
-                                <h:commandButton value="Eliminar" action="#{productoManageBean.eliminar(producto.id_producto)}" styleClass="btn btn-danger" onclick="return confirm('¿Estás seguro de eliminar este producto?');" />
-                            </h:form>
+                            <h:commandButton value="Eliminar" action="#{productoManageBean.eliminar(producto.id_producto)}" styleClass="btn btn-danger"/>
+
                         </td>
                     </tr>
                 </c:forEach>
