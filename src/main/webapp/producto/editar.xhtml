@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <title>Editar Producto</title>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css" />
+</head>
+<body>
+<h:form class="container">
+    <h2 class="mb-4">Editar Producto</h2>
+    <div class="row mb-3">
+        <div class="col-md-2">
+            <h:outputLabel for="codigo" value="Código Producto:" />
+        </div>
+        <div class="col-md-4">
+            <h:inputText id="codigo" value="#{sessionScope.productoEditado.codigo_producto}" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-2">
+            <h:outputLabel for="nombre" value="Nombre:" />
+        </div>
+        <div class="col-md-4">
+            <h:inputText id="nombre" value="#{sessionScope.productoEditado.nombre}" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-2">
+            <h:outputLabel for="descripcion" value="Descripción:" />
+        </div>
+        <div class="col-md-10">
+            <h:inputTextarea id="descripcion" value="#{sessionScope.productoEditado.descripcion}" rows="6" cols="30" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-2">
+            <h:outputLabel for="precio" value="Precio:" />
+        </div>
+        <div class="col-md-4">
+            <h:inputText id="precio" value="#{sessionScope.productoEditado.precio}" class="form-control" />
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <h:commandButton value="Guardar" action="#{productoManageBean.actualizar(sessionScope.productoEditado)}" class="btn btn-primary" />
+            <h:commandButton value="Cancelar" action="#{navigationBean.irProductos()}" class="btn btn-secondary" />
+        </div>
+    </div>
+</h:form>
+</body>
+</html>
