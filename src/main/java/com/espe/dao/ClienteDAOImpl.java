@@ -1,7 +1,7 @@
 package com.espe.dao;
 
-import com.espe.idao.IEmpleadoDAO;
-import com.espe.model.Empleado;
+import com.espe.idao.IClienteDAO;
+import com.espe.model.Cliente;
 import com.espe.model.JPAUtil;
 import com.espe.model.Producto;
 import jakarta.inject.Named;
@@ -9,21 +9,19 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
 import java.util.List;
-
 @Named
-public class EmpleadoDAOImpl implements IEmpleadoDAO {
+public class ClienteDAOImpl implements IClienteDAO {
     EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 
-
     @Override
-    public void guardar(Empleado empleado) {
+    public void guardar(Cliente cliente) {
         EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
         EntityTransaction transaction = null;
 
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
-            entityManager.persist(empleado);
+            entityManager.persist(cliente);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -36,20 +34,20 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
     }
 
     @Override
-    public void actualizar(Empleado empleado) {
+    public void actualizar(Cliente cliente) {
         entityManager.getTransaction().begin();
-        entityManager.merge(empleado);
+        entityManager.merge(cliente);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public Empleado buscarPorId(int id) {
-        return entityManager.find(Empleado.class, id);
+    public Cliente buscarPorId(int id) {
+        return entityManager.find(Cliente.class, id);
     }
 
     @Override
-    public List<Empleado> obtenerEmpleados() {
-        return entityManager.createQuery("SELECT p FROM Empleado p WHERE p.eliminado = false", Empleado.class).getResultList();
+    public List<Cliente> obtenerClientes() {
+        return entityManager.createQuery("SELECT p FROM Cliente p WHERE p.eliminado = false", Cliente.class).getResultList();
     }
 
     @Override
@@ -59,10 +57,11 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
 
     @Override
     public void actualizarEstado(int id, boolean eliminado) {
-        Empleado empleado = buscarPorId(id);
-        empleado.setEliminado(eliminado);
+        Cliente cliente = buscarPorId(id);
+        cliente.setEliminado(eliminado);
         entityManager.getTransaction().begin();
-        entityManager.merge(empleado);
+        entityManager.merge(cliente);
         entityManager.getTransaction().commit();
+
     }
 }

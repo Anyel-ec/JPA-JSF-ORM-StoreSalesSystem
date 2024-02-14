@@ -12,4 +12,5 @@ public interface IEmpleadoDAO {
     Empleado buscarPorId(int id);
     List<Empleado> obtenerEmpleados();
     void eliminar(int id);
+    void actualizarEstado(int id, boolean eliminado);
 }

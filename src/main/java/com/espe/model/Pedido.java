@@ -8,6 +8,7 @@ import java.time.LocalDate;
 @Table(name = "pedido")
 public class Pedido {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id_pedido;
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -22,20 +23,17 @@ public class Pedido {
     private EstadoPedido estadoPedido;
 
     @Column
-    private LocalDate fecha_pedido;
-    @Column
     private double total;
 
 
     public Pedido() {
     }
 
-    public Pedido(long id_pedido, Cliente cliente, Empleado empleado, EstadoPedido estadoPedido, LocalDate fecha_pedido, double total) {
+    public Pedido(long id_pedido, Cliente cliente, Empleado empleado, EstadoPedido estadoPedido, double total) {
         this.id_pedido = id_pedido;
         this.cliente = cliente;
         this.empleado = empleado;
         this.estadoPedido = estadoPedido;
-        this.fecha_pedido = fecha_pedido;
         this.total = total;
     }
 
@@ -71,13 +69,6 @@ public class Pedido {
         this.estadoPedido = estadoPedido;
     }
 
-    public LocalDate getFecha_pedido() {
-        return fecha_pedido;
-    }
-
-    public void setFecha_pedido(LocalDate fecha_pedido) {
-        this.fecha_pedido = fecha_pedido;
-    }
 
     public double getTotal() {
         return total;
@@ -94,7 +85,6 @@ public class Pedido {
                 ", cliente=" + cliente +
                 ", empleado=" + empleado +
                 ", estadoPedido=" + estadoPedido +
-                ", fecha_pedido=" + fecha_pedido +
                 ", total=" + total +
                 '}';
     }

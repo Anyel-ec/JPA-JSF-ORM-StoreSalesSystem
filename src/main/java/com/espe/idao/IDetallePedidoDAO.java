@@ -12,4 +12,6 @@ public interface IDetallePedidoDAO {
     DetallePedido buscarPorId(int id);
     List<DetallePedido> obtenerDetallePedido();
     void eliminar(int id);
+
+
 }

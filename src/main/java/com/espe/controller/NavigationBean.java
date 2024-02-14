@@ -12,6 +12,10 @@ public class NavigationBean {
         // Lógica para determinar a qué página redirigir
         return "/cliente/index.xhtml";
     }
+    public String nuevoCliente() {
+        // Lógica para determinar a qué página redirigir
+        return "/cliente/nuevo.xhtml";
+    }
     public String irProductos() {
         // Lógica para determinar a qué página redirigir
         return "/index.xhtml";
@@ -23,7 +27,7 @@ public class NavigationBean {
 
     public String irDetalles() {
         // Lógica para determinar a qué página redirigir
-        return "/detalle/index.xhtml";
+        return "/detalles/index.xhtml";
     }
     public String irEmpleados() {
         // Lógica para determinar a qué página redirigir
@@ -38,5 +42,9 @@ public class NavigationBean {
     public String irPedidos() {
         // Lógica para determinar a qué página redirigir
         return "/pedido/index.xhtml";
+    }
+    public String nuevoPedido() {
+        // Lógica para determinar a qué página redirigir
+        return "/pedido/nuevo.xhtml";
     }
 }

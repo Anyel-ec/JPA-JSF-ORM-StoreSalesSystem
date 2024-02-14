@@ -18,7 +18,6 @@ public class Cliente {
     private String cedula;
     @Column
     private String direccion;
-
     @Column
     private boolean eliminado = Boolean.FALSE;
 
@@ -94,14 +93,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "id_cliente=" + id_cliente +
-                ", nombre='" + nombre + '\'' +
-                ", apellido='" + apellido + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", cedula='" + cedula + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", eliminado=" + eliminado +
-                '}';
+        return nombre + " " + apellido;
     }
 }

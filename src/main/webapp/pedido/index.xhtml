@@ -1,11 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+<head>
+    <title>Pedidos</title>
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/header.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
+
+</head>
+<body>
+<h:form>
+    <div class="navbar navbar-expand-lg fixed-top navbar-scroll">
+        <div class="container">
+            <h:graphicImage url="https://mdbootstrap.com/img/Photos/new-templates/animal-shelter/logo.png" height="70" alt="" loading="lazy" />
+            <h:commandButton styleClass="navbar-toggler ps-0" type="button" actionListener="#{navigationBean.toggleNavbar}" value="Toggle navigation">
+                    <span class="navbar-toggler-icon d-flex justify-content-start align-items-center">
+                        <i class="fas fa-bars"></i>
+                    </span>
+            </h:commandButton>
+            <div class="collapse navbar-collapse" id="navbarExample01">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <h:commandButton styleClass="btn btn-outline-light text-primary" value="Productos" action="#{navigationBean.irProductos()}" />
+                    </li>
+                    <li class="nav-item">
+                        <h:commandButton styleClass="btn btn-outline-light text-primary" value="Clientes" action="#{navigationBean.irClientes()}" />
+                    </li>
+                    <li class="nav-item active">
+                        <h:commandButton styleClass="btn btn-outline-light text-primary" value="Empleados" action="#{navigationBean.irEmpleados()}" />
+                    </li>
+                    <li class="nav-item">
+                        <h:commandButton styleClass="btn btn-outline-light text-primary"  value="Detalles Pedido" action="#{navigationBean.irDetalles()}" />
+                    </li>
+                    <li class="nav-item">
+                        <h:commandButton styleClass="btn btn-outline-light text-dark"  value="Pedido" action="#{navigationBean.irPedidos()}" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <hr/>
+        <br/>
+        <br/>
+        <h:commandButton styleClass="btn btn-primary mt-5" value="Nuevo Pedido" action="#{navigationBean.nuevoPedido()}" />
+        <h2> Lista de los Pedidos</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="table-dark">
+                <tr>
+                    <!--<th scope="col">ID Empleado</th>-->
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Empleado</th>
+                    <th scope="col">Estado del Pedido</th>
+                    <th scope="col">Total</th>
+
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="#{pedidoManageBean.obtenerPedidos()}" var="pedido">
+                    <tr>
+                        <!--<td>#{empleado.id_empleado}</td>-->
+                        <td>#{pedido.cliente}</td>
+                        <td>#{pedido.empleado}</td>
+                        <td>#{pedido.estadoPedido}</td>
+                        <td>#{pedido.total}</td>
+                        <td>
+                            <h:form>
+                                <h:commandButton value="Editar" action="#{pedidoManageBean.editar(pedido.id_pedido)}" styleClass="btn btn-warning" />
+                            </h:form>
+                            <h:form>
+                                <h:commandButton value="Eliminar" action="#{pedidoManageBean.eliminar(pedido.id_pedido)}" styleClass="btn btn-danger" />
+                            </h:form>
+
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--navegacion-->
+    <div style="background-color: #deded5;">
+        <div class="container p-4">
+            <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4">
+                    <h5 class="mb-3" style="letter-spacing: 2px; color: #818963;">footer content</h5>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
+                        molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
+                        voluptatem veniam, est atque cumque eum delectus sint!
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-3" style="letter-spacing: 2px; color: #818963;">links</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-1">
+                            <h:outputLink value="#!" style="color: #4f4f4f;">Frequently Asked Questions</h:outputLink>
+                        </li>
+                        <li class="mb-1">
+                            <h:outputLink value="#!" style="color: #4f4f4f;">Delivery</h:outputLink>
+                        </li>
+                        <li class="mb-1">
+                            <h:outputLink value="#!" style="color: #4f4f4f;">Pricing</h:outputLink>
+                        </li>
+                        <li>
+                            <h:outputLink value="#!" style="color: #4f4f4f;">Where we deliver?</h:outputLink>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-1" style="letter-spacing: 2px; color: #818963;">opening hours</h5>
+                    <table class="table" style="color: #4f4f4f; border-color: #666;">
+                        <tbody>
+                        <tr>
+                            <td>Mon - Fri:</td>
+                            <td>8am - 9pm</td>
+                        </tr>
+                        <tr>
+                            <td>Sat - Sun:</td>
+                            <td>8am - 1am</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+    </div>
+</h:form>
+</body>
 </html>

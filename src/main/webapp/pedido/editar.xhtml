@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+   <title>Editar Empleado</title>
+   <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css" />
+</head>
+<body>
+<h:form class="container">
+   <h2 class="mb-4">Editar Empleado</h2>
+
+
+   <div class="row mb-3">
+      <div class="col-md-2">
+         <h:outputLabel for="cliente" value="cliente:" />
+      </div>
+      <div class="col-md-4">
+         <h:selectOneMenu id="cliente" value="#{sessionScope.pedidoEditado.cliente.id_cliente}" class="form-select">
+            <f:selectItem itemLabel="-- Seleccione un cliente --" itemValue="#{null}" />
+            <f:selectItems value="#{pedidoManageBean.obtenerClientes()}" var="clientes" itemLabel="#{clientes.nombre} #{clientes.apellido}" itemValue="#{clientes.id_cliente}" />
+         </h:selectOneMenu>
+      </div>
+   </div>
+
+   <div class="row mb-3">
+      <div class="col-md-2">
+         <h:outputLabel for="empleado" value="empleado:" />
+      </div>
+      <div class="col-md-4">
+         <h:selectOneMenu id="empleado" value="#{sessionScope.pedidoEditado.empleado.id_empleado}" class="form-select">
+            <f:selectItem itemLabel="-- Seleccione un cliente --" itemValue="#{null}" />
+            <f:selectItems value="#{pedidoManageBean.obtenerEmpleados()}" var="empleado" itemLabel="#{empleado.nombre} #{empleado.apellido}" itemValue="#{empleado.id_empleado}" />
+         </h:selectOneMenu>
+      </div>
+   </div>
+
+
+
+   <div class="mb-3">
+      <label for="telefono" class="form-label">Total:</label>
+      <h:inputText id="telefono" value="#{pedidoManageBean.pedido.total}" class="form-control" />
+   </div>
+
+
+
+   <div class="row mb-3">
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+         <h:commandButton value="Guardar" action="#{empleadoManageBean.actualizar(sessionScope.empleadoEditado)}" class="btn btn-primary" />
+         <h:commandButton value="Cancelar" action="#{navigationBean.irEmpleados()}" class="btn btn-secondary" />
+      </div>
+   </div>
+</h:form>
+</body>
+</html>
