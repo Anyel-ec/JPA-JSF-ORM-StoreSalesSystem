@@ -43,34 +43,33 @@
     </div>
 
     <div class="container mt-5">
-        <h1 class="mt-5"> Clientes </h1>
-        <h:commandButton styleClass="btn btn-primary mt-5" value="Nuevo Cliente" action="#{navigationBean.nuevoCliente()}" />
+        <h1 class="mt-5"> Detalles del Pedido </h1>
+        <h:commandButton styleClass="btn btn-primary mt-5" value="Nuevo Detalle" action="#{navigationBean.nuevoDetalle()}" />
         <h2> Lista de los Detalles</h2>
         <div class="table-responsive">
             <table class="table table-bordered table-hover">
                 <thead class="table-dark">
                 <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Cedula</th>
-                    <th scope="col">Direccion</th>
-                    <th scope="col">Telefono</th>
+                    <th scope="col">Pedido</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Subtotal</th>
+
                     <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="#{clienteManagerBean.obtenerClientes()}" var="cliente">
+                <c:forEach items="#{detallePedidoManageBean.obtenerDetallePedido()}" var="detalles">
                     <tr>
-                        <td>#{cliente.nombre}</td>
-                        <td>#{cliente.apellido}</td>
-                        <td>#{cliente.cedula}</td>
-                        <td>#{cliente.direccion}</td>
-                        <td>#{cliente.telefono}</td>
+                        <td>#{detalles.pedido}</td>
+                        <td>#{detalles.producto}</td>
+                        <td>#{detalles.cantidad}</td>
+                        <td>#{detalles.subtotal}</td>
                         <td>
                             <h:form>
-                                <h:commandButton value="Editar" action="#{clienteManagerBean.editar(cliente.id_cliente)}" styleClass="btn btn-warning" />
+                                <h:commandButton value="Editar" action="#{detallePedidoManageBean.editar(detalles.id_detalle_pedido)}" styleClass="btn btn-warning" />
                             </h:form>
-                            <h:commandButton value="Eliminar" action="#{clienteManagerBean.eliminar(cliente.id_cliente)}" styleClass="btn btn-danger"/>
+                            <h:commandButton value="Eliminar" action="#{detallePedidoManageBean.eliminar(detalles.id_detalle_pedido)}" styleClass="btn btn-danger"/>
                         </td>
                     </tr>
                 </c:forEach>
@@ -78,8 +77,10 @@
             </table>
         </div>
     </div>
-    <!--navegacion-->
-    <div class="container-footer container-fluid mt-5">
+
+</h:form>
+<div style="background-color: #deded5;">
+    <div class="container p-4">
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4">
                 <h5 class="mb-3" style="letter-spacing: 2px; color: #333;">Sobre Nosotros</h5>
@@ -121,6 +122,9 @@
             </div>
         </div>
     </div>
-</h:form>
+
+    <!-- Copyright -->
+</div >
+
 </body>
 </html>

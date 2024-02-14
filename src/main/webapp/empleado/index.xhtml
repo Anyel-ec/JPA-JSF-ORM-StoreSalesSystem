@@ -59,7 +59,6 @@
                     <th scope="col">Puesto</th>
                     <th scope="col">Teléfono</th>
                     <th scope="col">Cédula</th>
-                    <th scope="col">Eliminado</th>-
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -72,7 +71,6 @@
                         <td>#{empleado.puesto}</td>
                         <td>#{empleado.telefono}</td>
                         <td>#{empleado.cedula}</td>
-                        <td>#{empleado.eliminado}</td>
 
                         <td>
                             <h:form>
@@ -88,55 +86,54 @@
             </table>
         </div>
     </div>
-    <!--navegacion-->
-    <div style="background-color: #deded5;">
-        <div class="container p-4">
-            <div class="row">
-                <div class="col-lg-6 col-md-12 mb-4">
-                    <h5 class="mb-3" style="letter-spacing: 2px; color: #818963;">footer content</h5>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                        molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae aliquam
-                        voluptatem veniam, est atque cumque eum delectus sint!
-                    </p>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <h5 class="mb-3" style="letter-spacing: 2px; color: #818963;">links</h5>
-                    <ul class="list-unstyled mb-0">
-                        <li class="mb-1">
-                            <h:outputLink value="#!" style="color: #4f4f4f;">Frequently Asked Questions</h:outputLink>
-                        </li>
-                        <li class="mb-1">
-                            <h:outputLink value="#!" style="color: #4f4f4f;">Delivery</h:outputLink>
-                        </li>
-                        <li class="mb-1">
-                            <h:outputLink value="#!" style="color: #4f4f4f;">Pricing</h:outputLink>
-                        </li>
-                        <li>
-                            <h:outputLink value="#!" style="color: #4f4f4f;">Where we deliver?</h:outputLink>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-lg-3 col-md-6 mb-4">
-                    <h5 class="mb-1" style="letter-spacing: 2px; color: #818963;">opening hours</h5>
-                    <table class="table" style="color: #4f4f4f; border-color: #666;">
-                        <tbody>
-                        <tr>
-                            <td>Mon - Fri:</td>
-                            <td>8am - 9pm</td>
-                        </tr>
-                        <tr>
-                            <td>Sat - Sun:</td>
-                            <td>8am - 1am</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+
+</h:form>
+<div style="background-color: #deded5;" class="mt-4">
+    <div class="container p-4 ">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-3" style="letter-spacing: 2px; color: #333;">Sobre Nosotros</h5>
+                <p>
+                    Somos una tienda de víveres comprometida en proveer productos frescos y de alta calidad para satisfacer las necesidades de nuestros clientes.
+                </p>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-3" style="letter-spacing: 2px; color: #333;">Enlaces Útiles</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-1">
+                        <a href="#!" style="color: #333;">Preguntas Frecuentes</a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#!" style="color: #333;">Envíos</a>
+                    </li>
+                    <li class="mb-1">
+                        <a href="#!" style="color: #333;">Precios</a>
+                    </li>
+                    <li>
+                        <a href="#!" style="color: #333;">Áreas de Entrega</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <h5 class="mb-1" style="letter-spacing: 2px; color: #333;">Horario de Atención</h5>
+                <table class="table" style="color: #333;">
+                    <tbody>
+                    <tr>
+                        <td>Lunes - Viernes:</td>
+                        <td>8am - 9pm</td>
+                    </tr>
+                    <tr>
+                        <td>Sábado - Domingo:</td>
+                        <td>8am - 1am</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-
-        <!-- Copyright -->
     </div>
-</h:form>
+
+    <!-- Copyright -->
+</div>
+
 </body>
 </html>

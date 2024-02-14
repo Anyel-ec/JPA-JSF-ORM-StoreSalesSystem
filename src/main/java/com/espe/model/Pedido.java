@@ -80,12 +80,6 @@ public class Pedido {
 
     @Override
     public String toString() {
-        return "Pedido{" +
-                "id_pedido=" + id_pedido +
-                ", cliente=" + cliente +
-                ", empleado=" + empleado +
-                ", estadoPedido=" + estadoPedido +
-                ", total=" + total +
-                '}';
+        return "ID: " + id_pedido + ", Cliente: "+ cliente + ", Empleado: " + empleado;
     }
 }

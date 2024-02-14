@@ -3,54 +3,141 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <head>
-   <title>Editar Empleado</title>
+   <title>Editar Pedido</title>
    <link rel="stylesheet" type="text/css" href="#{request.contextPath}/css/bootstrap.min.css" />
 </head>
 <body>
-<h:form class="container">
-   <h2 class="mb-4">Editar Empleado</h2>
+<h:form>
+   <div class="navbar navbar-expand-lg mb-5">
+      <div class="container">
+         <h:graphicImage url="https://mdbootstrap.com/img/Photos/new-templates/animal-shelter/logo.png" height="70" alt="" loading="lazy" />
+         <h:commandButton styleClass="navbar-toggler ps-0" type="button" actionListener="#{navigationBean.toggleNavbar}" value="Toggle navigation">
+                    <span class="navbar-toggler-icon d-flex justify-content-start align-items-center">
+                        <i class="fas fa-bars"></i>
+                    </span>
+         </h:commandButton>
+         <div class="collapse navbar-collapse" id="navbarExample01">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+               <li class="nav-item active">
+                  <h:commandButton styleClass="btn btn-outline-light text-primary" value="Productos" action="#{navigationBean.irProductos()}" />
+               </li>
+               <li class="nav-item">
+                  <h:commandButton styleClass="btn btn-outline-light text-primary" value="Clientes" action="#{navigationBean.irClientes()}" />
+               </li>
+               <li class="nav-item">
+                  <h:commandButton styleClass="btn btn-outline-light text-primary" value="Empleados" action="#{navigationBean.irEmpleados()}" />
+               </li>
+               <li class="nav-item">
+                  <h:commandButton styleClass="btn btn-outline-light text-primary"  value="Detalles Pedido" action="#{navigationBean.irDetalles()}" />
+               </li>
+               <li class="nav-item">
+                  <h:commandButton styleClass="btn btn-outline-light text-dark"  value="Pedido" action="#{navigationBean.irPedidos()}" />
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+</h:form>
 
+<h:form class="container mt-5">
+   <br class="mt-5"/>
+   <h2 class="mb-4">Editar Pedido</h2>
 
    <div class="row mb-3">
       <div class="col-md-2">
-         <h:outputLabel for="cliente" value="cliente:" />
+         <h:outputLabel for="cliente" value="Cliente:" />
       </div>
       <div class="col-md-4">
          <h:selectOneMenu id="cliente" value="#{sessionScope.pedidoEditado.cliente.id_cliente}" class="form-select">
             <f:selectItem itemLabel="-- Seleccione un cliente --" itemValue="#{null}" />
-            <f:selectItems value="#{pedidoManageBean.obtenerClientes()}" var="clientes" itemLabel="#{clientes.nombre} #{clientes.apellido}" itemValue="#{clientes.id_cliente}" />
+            <f:selectItems value="#{pedidoManageBean.obtenerClientes()}" var="cliente" itemLabel="#{cliente.nombre} #{cliente.apellido}" itemValue="#{cliente.id_cliente}" />
          </h:selectOneMenu>
       </div>
    </div>
 
    <div class="row mb-3">
       <div class="col-md-2">
-         <h:outputLabel for="empleado" value="empleado:" />
+         <h:outputLabel for="empleado" value="Empleado:" />
       </div>
       <div class="col-md-4">
          <h:selectOneMenu id="empleado" value="#{sessionScope.pedidoEditado.empleado.id_empleado}" class="form-select">
-            <f:selectItem itemLabel="-- Seleccione un cliente --" itemValue="#{null}" />
+            <f:selectItem itemLabel="-- Seleccione un empleado --" itemValue="#{null}" />
             <f:selectItems value="#{pedidoManageBean.obtenerEmpleados()}" var="empleado" itemLabel="#{empleado.nombre} #{empleado.apellido}" itemValue="#{empleado.id_empleado}" />
          </h:selectOneMenu>
       </div>
    </div>
 
-
-
-   <div class="mb-3">
-      <label for="telefono" class="form-label">Total:</label>
-      <h:inputText id="telefono" value="#{pedidoManageBean.pedido.total}" class="form-control" />
+   <div class="row mb-3">
+      <div class="col-md-2">
+         <h:outputLabel for="estado" value="Estado:" />
+      </div>
+      <div class="col-md-4">
+         <h:selectOneMenu id="estado" value="#{sessionScope.pedidoEditado.estadoPedido.id_estado_pedido}" class="form-select">
+            <f:selectItem itemLabel="-- Seleccione un estado --" itemValue="#{null}" />
+            <f:selectItems value="#{pedidoManageBean.obtenerEstadosPedido()}" var="estado" itemLabel="#{estado.nombre}" itemValue="#{estado.id_estado_pedido}" />
+         </h:selectOneMenu>
+      </div>
    </div>
 
-
+   <div class="mb-3">
+      <label for="total" class="form-label">Total:</label>
+      <h:inputText id="total" value="#{sessionScope.pedidoEditado.total}" class="form-control" />
+   </div>
 
    <div class="row mb-3">
       <div class="col-md-2"></div>
       <div class="col-md-4">
-         <h:commandButton value="Guardar" action="#{empleadoManageBean.actualizar(sessionScope.empleadoEditado)}" class="btn btn-primary" />
-         <h:commandButton value="Cancelar" action="#{navigationBean.irEmpleados()}" class="btn btn-secondary" />
+         <h:commandButton value="Guardar" action="#{pedidoManageBean.actualizar(sessionScope.pedidoEditado)}" class="btn btn-primary" />
+         <h:commandButton value="Cancelar" action="#{navigationBean.irPedidos()}" class="btn btn-secondary" />
       </div>
    </div>
 </h:form>
+<div style="background-color: #deded5;">
+   <div class="container p-4">
+      <div class="row">
+         <div class="col-lg-4 col-md-6 mb-4">
+            <h5 class="mb-3" style="letter-spacing: 2px; color: #333;">Sobre Nosotros</h5>
+            <p>
+               Somos una tienda de víveres comprometida en proveer productos frescos y de alta calidad para satisfacer las necesidades de nuestros clientes.
+            </p>
+         </div>
+         <div class="col-lg-4 col-md-6 mb-4">
+            <h5 class="mb-3" style="letter-spacing: 2px; color: #333;">Enlaces Útiles</h5>
+            <ul class="list-unstyled mb-0">
+               <li class="mb-1">
+                  <a href="#!" style="color: #333;">Preguntas Frecuentes</a>
+               </li>
+               <li class="mb-1">
+                  <a href="#!" style="color: #333;">Envíos</a>
+               </li>
+               <li class="mb-1">
+                  <a href="#!" style="color: #333;">Precios</a>
+               </li>
+               <li>
+                  <a href="#!" style="color: #333;">Áreas de Entrega</a>
+               </li>
+            </ul>
+         </div>
+         <div class="col-lg-4 col-md-6 mb-4">
+            <h5 class="mb-1" style="letter-spacing: 2px; color: #333;">Horario de Atención</h5>
+            <table class="table" style="color: #333;">
+               <tbody>
+               <tr>
+                  <td>Lunes - Viernes:</td>
+                  <td>8am - 9pm</td>
+               </tr>
+               <tr>
+                  <td>Sábado - Domingo:</td>
+                  <td>8am - 1am</td>
+               </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+
+   <!-- Copyright -->
+</div>
+
 </body>
 </html>
