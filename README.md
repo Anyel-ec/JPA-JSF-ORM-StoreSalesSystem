@@ -1,6 +1,10 @@
 # Product Sales System - CRUD with JPA and JSF
 
 This project implements a CRUD (Create, Read, Update, Delete) system using Java Persistence API (JPA) and JavaServer Faces (JSF) for managing products, customers, orders, order details, employees, and positions.
+## **Select Language: 🌐** 
+- [Español (Spanish)](README.md)
+- [English](README-en.md)
+
 
 ## Results
 ### ERD Diagram
