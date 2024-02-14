@@ -1,9 +1,9 @@
 package com.espe.dao;
 
-import com.espe.idao.IEmpleadoDAO;
-import com.espe.model.Empleado;
+import com.espe.idao.IDetallePedidoDAO;
+import com.espe.model.DetallePedido;
 import com.espe.model.JPAUtil;
-import com.espe.model.Producto;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
@@ -11,19 +11,18 @@ import jakarta.persistence.EntityTransaction;
 import java.util.List;
 
 @Named
-public class EmpleadoDAOImpl implements IEmpleadoDAO {
+public class DetallePedidoDAO implements IDetallePedidoDAO {
     EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 
-
     @Override
-    public void guardar(Empleado empleado) {
+    public void guardar(DetallePedido detallePedido) {
         EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
         EntityTransaction transaction = null;
 
         try {
             transaction = entityManager.getTransaction();
             transaction.begin();
-            entityManager.persist(empleado);
+            entityManager.persist(detallePedido);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -36,33 +35,31 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
     }
 
     @Override
-    public void actualizar(Empleado empleado) {
+    public void actualizar(DetallePedido detallePedido) {
         entityManager.getTransaction().begin();
-        entityManager.merge(empleado);
+        entityManager.merge(detallePedido);
         entityManager.getTransaction().commit();
     }
 
     @Override
-    public Empleado buscarPorId(int id) {
-        return entityManager.find(Empleado.class, id);
+    public DetallePedido buscarPorId(int id) {
+        return entityManager.find(DetallePedido.class, id);
+
     }
 
     @Override
-    public List<Empleado> obtenerEmpleados() {
-        return entityManager.createQuery("SELECT e FROM Empleado e WHERE e.eliminado = false", Empleado.class).getResultList();
+    public List<DetallePedido> obtenerDetallePedido() {
+        return entityManager.createQuery("SELECT d FROM DetallePedido d", DetallePedido.class).getResultList();
     }
 
     @Override
     public void eliminar(int id) {
-        actualizarEstado(id, true);
-    }
-
-    @Override
-    public void actualizarEstado(int id, boolean eliminado) {
-        Empleado empleado = buscarPorId(id);
-        empleado.setEliminado(eliminado);
+        // eliminacion fisica con remove
+        DetallePedido detallePedido = buscarPorId(id);
         entityManager.getTransaction().begin();
-        entityManager.merge(empleado);
+        entityManager.remove(detallePedido);
         entityManager.getTransaction().commit();
     }
+
+
 }

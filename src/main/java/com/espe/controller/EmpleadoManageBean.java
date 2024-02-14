@@ -5,6 +5,7 @@ import com.espe.dao.PuestoDAOImpl;
 import com.espe.idao.IEmpleadoDAO;
 import com.espe.idao.IPuestoDAO;
 import com.espe.model.Empleado;
+import com.espe.model.JPAUtil;
 import com.espe.model.Puesto;
 import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
@@ -12,6 +13,8 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 
 import java.util.List;
 import java.util.Map;
@@ -51,10 +54,27 @@ public class EmpleadoManageBean {
     }
 
     // Método para eliminar un empleado (soft delete)
+    // Método para eliminar un empleado (soft delete)
     public void eliminar(int id) {
-        empleadoDAO.actualizarEstado(id, Boolean.TRUE);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Empleado eliminado correctamente"));
+        EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+
+        try {
+            transaction.begin();
+            empleadoDAO.actualizarEstado(id, true);
+            transaction.commit();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Empleado eliminado correctamente"));
+        } catch (Exception e) {
+            if (transaction != null && transaction.isActive()) {
+                transaction.rollback();
+            }
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error al eliminar el empleado"));
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
+        }
     }
+
 
     // Método para obtener todos los empleados
     public List<Empleado> obtenerEmpleados() {

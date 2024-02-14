@@ -37,9 +37,6 @@ public class EstadoPedido {
 
     @Override
     public String toString() {
-        return "EstadoPedido{" +
-                "id_estado_pedido=" + id_estado_pedido +
-                ", nombre='" + nombre + '\'' +
-                '}';
+        return nombre;
     }
 }

@@ -59,6 +59,7 @@
                     <th scope="col">Puesto</th>
                     <th scope="col">Teléfono</th>
                     <th scope="col">Cédula</th>
+                    <th scope="col">Eliminado</th>-
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -71,6 +72,8 @@
                         <td>#{empleado.puesto}</td>
                         <td>#{empleado.telefono}</td>
                         <td>#{empleado.cedula}</td>
+                        <td>#{empleado.eliminado}</td>
+
                         <td>
                             <h:form>
                                 <h:commandButton value="Editar" action="#{empleadoManageBean.editar(empleado.id_empleado)}" styleClass="btn btn-warning" />

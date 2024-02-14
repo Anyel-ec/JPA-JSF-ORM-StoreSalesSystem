@@ -45,7 +45,6 @@ public class ProductoManageBean {
     public void eliminar(int id) {
         productoDAO.actualizarEstado(id, Boolean.TRUE);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Éxito", "Producto eliminado correctamente"));
-
     }
 
 
